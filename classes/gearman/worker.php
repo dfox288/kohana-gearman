@@ -26,7 +26,7 @@ abstract class Gearman_Worker {
 			return Gearman_Worker::$instances[$group];
 		}
 
-		$config = Kohana::config('gearman.worker');
+		$config = Kohana::$config->load('gearman.worker');
 
 		if ( ! array_key_exists($group, $config))
 		{

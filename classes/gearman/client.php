@@ -27,7 +27,7 @@ abstract class Gearman_Client {
 			return Gearman_Client::$instances[$group];
 		}
 
-		$config = Kohana::config('gearman.client');
+		$config = Kohana::$config->load('gearman.client');
 
 		if ( ! array_key_exists($group, $config))
 		{
