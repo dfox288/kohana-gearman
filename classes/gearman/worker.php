@@ -37,7 +37,7 @@ abstract class Gearman_Worker {
 
 		$gearman_worker_class = 'Gearman_Worker_'.ucfirst($config['driver']);
 		Gearman_Worker::$instances[$group] = new $gearman_worker_class($config);
-
+ 
 		return Gearman_Worker::$instances[$group];
 	}
 

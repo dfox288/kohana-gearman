@@ -23,7 +23,7 @@ class Gearman_Client_Pecl extends Gearman_Client {
 		foreach ($this->config['servers'] as $server)
 		{
 			$this->client->addServer($server[0], $server[1]);
-		}
+		} 
 
 		$this->client->setCompleteCallback(array($this, 'handle_success_callback'));
 		$this->client->setWarningCallback(array($this, 'handle_warning_callback'));

@@ -29,7 +29,7 @@ class Gearman_Worker_Pecl extends Gearman_Worker {
 			
 			$this->worker->addFunction($instance->function_name(), $callback, NULL, $function['timeout']);
 		}
-	}
+	} 
 
 	protected function _work()
 	{

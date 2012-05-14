@@ -24,7 +24,7 @@ abstract class Gearman_Task {
 	protected $log;
 
 	public static function factory($class)
-	{
+	{ 
 		return new $class;
 	}
 	
@@ -77,7 +77,7 @@ abstract class Gearman_Task {
 	protected function send_complete($content = NULL)
 	{
 		$this->job->sendComplete($content);
-
+ 
 		$this->log->add(Log::INFO, 'GEARMAN: :function_name task completed successfully',
 			array(
 				':function_name' => $this->function_name()

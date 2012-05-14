@@ -66,7 +66,7 @@ abstract class Gearman_Job {
 				':function_name' => $this->function_name()
 			));
 
-		$this->on_success($result);
+		$this->on_success($result); 
 	}
 
 	protected function on_success($result)
