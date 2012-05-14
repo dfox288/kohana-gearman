@@ -61,7 +61,7 @@ abstract class Gearman_Job {
 		$this->complete = TRUE;
 		$this->success = TRUE;
 
-		$this->log->add(Kohana::INFO, 'GEARMAN: :function_name task completed successfully',
+		$this->log->add(Log::INFO, 'GEARMAN: :function_name task completed successfully',
 			array(
 				':function_name' => $this->function_name()
 			));
@@ -78,7 +78,7 @@ abstract class Gearman_Job {
 	{
 		$this->warning = TRUE;
 
-		$this->log->add(Kohana::ERROR, 'GEARMAN: :function_name emitted a warning',
+		$this->log->add(Log::ERROR, 'GEARMAN: :function_name emitted a warning',
 			array(
 				':function_name' => $this->function_name()
 			));
@@ -96,7 +96,7 @@ abstract class Gearman_Job {
 		$this->complete = TRUE;
 		$this->failed = TRUE;
 
-		$this->log->add(Kohana::ERROR, 'GEARMAN: :function_name task NOT completed successfully - Failed',
+		$this->log->add(Log::ERROR, 'GEARMAN: :function_name task NOT completed successfully - Failed',
 			array(
 				':function_name' => $this->function_name()
 			));
@@ -113,7 +113,7 @@ abstract class Gearman_Job {
 	{
 		$this->exception = TRUE;
 
-		$this->log->add(Kohana::ERROR, 'GEARMAN: :function_name emitted an exception',
+		$this->log->add(Log::ERROR, 'GEARMAN: :function_name emitted an exception',
 			array(
 				':function_name' => $this->function_name()
 			));
@@ -128,7 +128,7 @@ abstract class Gearman_Job {
 
 	public function handle_status($numerator, $denominator)
 	{
-		$this->log->add(Kohana::DEBUG, 'GEARMAN: :function_name emitted a status update (:numerator/:denominator)',
+		$this->log->add(Log::DEBUG, 'GEARMAN: :function_name emitted a status update (:numerator/:denominator)',
 			array(
 				':function_name' => $this->function_name(),
 				':numerator'     => $numerator,
@@ -145,7 +145,7 @@ abstract class Gearman_Job {
 
 	public function handle_data($result)
 	{
-		$this->log->add(Kohana::DEBUG, 'GEARMAN: :function_name emitted a data update',
+		$this->log->add(Log::DEBUG, 'GEARMAN: :function_name emitted a data update',
 			array(
 				':function_name' => $this->function_name()
 			));

@@ -46,7 +46,7 @@ class Gearman_Client_Pecl extends Gearman_Client {
 					$result = $this->client->doLow($job->function_name(), $job->workload());
 					break;
 				case Gearman::PRIORITY_NORMAL:
-					$result = $this->client->do($job->function_name(), $job->workload());
+					$result = $this->client->doNormal($job->function_name(), $job->workload());
 					break;
 				case Gearman::PRIORITY_HIGH:
 					$result = $this->client->doHigh($job->function_name(), $job->workload());
