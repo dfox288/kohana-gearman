@@ -274,6 +274,7 @@ class Gearman_Client_Pecl extends Gearman_Client {
 		}
 		catch (Exception $e)
 		{
+		    Kohana::$log->add(Log::ERROR, Kohana_Exception::text($e)); 
 			if ( ! isset($this->results[$t->unique()]) OR ! $this->results[$t->unique()] instanceof Gearman_Client_Exception)
 			{
 				$this->results[$t->unique()] = new Gearman_Client_Exception('Task Failed');
