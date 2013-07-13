@@ -8,7 +8,7 @@
  * @license    http://kohanaframework.org/license
  */
 
-class Gearman_Client_Pecl extends Gearman_Client {
+class Gearman_Client_PECL extends Gearman_Client {
 	protected $client;
 
 	protected $jobs = array();
@@ -23,7 +23,7 @@ class Gearman_Client_Pecl extends Gearman_Client {
 		foreach ($this->config['servers'] as $server)
 		{
 			$this->client->addServer($server[0], $server[1]);
-		} 
+		}
 
 		$this->client->setCompleteCallback(array($this, 'handle_success_callback'));
 		$this->client->setWarningCallback(array($this, 'handle_warning_callback'));
@@ -39,7 +39,7 @@ class Gearman_Client_Pecl extends Gearman_Client {
 		do
 		{
 			$result = NULL;
-			
+
 			switch ($priority)
 			{
 				case Gearman::PRIORITY_LOW:
@@ -54,7 +54,7 @@ class Gearman_Client_Pecl extends Gearman_Client {
 				default:
 					throw new Gearman_Client_Exception('Invalid priority specified');
 			}
-			
+
 			switch ($this->client->returnCode())
 			{
 				case GEARMAN_SUCCESS:
@@ -110,7 +110,7 @@ class Gearman_Client_Pecl extends Gearman_Client {
 			default:
 				throw new Gearman_Client_Exception('Unknown error');
 		}
-		
+
 	}
 
 	public function add_job(Gearman_Job $job, $priority = Gearman::PRIORITY_NORMAL)
@@ -161,11 +161,11 @@ class Gearman_Client_Pecl extends Gearman_Client {
 		$this->client->runTasks();
 
 		$return = $this->results;
-		
+
 		// Cleanup
 		$this->jobs = array();
 		$this->results = array();
-		
+
 		return $return;
 	}
 
@@ -196,11 +196,11 @@ class Gearman_Client_Pecl extends Gearman_Client {
 		}
 
 	}
-	
+
 	public function check_completion($job_handle)
 	{
 		$status = $this->client->jobStatus($job_handle);
-		
+
 		if ($status[0])
 		{
 			// Job is known
@@ -274,7 +274,7 @@ class Gearman_Client_Pecl extends Gearman_Client {
 		}
 		catch (Exception $e)
 		{print Debug::vars($e);
-		    Kohana::$log->add(Log::ERROR, Kohana_Exception::text($e)); 
+		    Kohana::$log->add(Log::ERROR, Kohana_Exception::text($e));
 			if ( ! isset($this->results[$t->unique()]) OR ! $this->results[$t->unique()] instanceof Gearman_Client_Exception)
 			{
 				$this->results[$t->unique()] = new Gearman_Client_Exception('Task Failed');
