@@ -7,7 +7,7 @@
  * @copyright  (c) 2010 Kiall Mac Innes
  * @license    http://kohanaframework.org/license
  */
-class GearmanTaskTest extends PHPUnit_Framework_TestCase {
+class Gearman_WorkerTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * Dummy Test
 	 * @test

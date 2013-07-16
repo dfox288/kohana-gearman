@@ -15,7 +15,7 @@ abstract class Gearman_Client {
 
 	protected $config;
 
-	public static function instance($group = NULL)
+	public static function instance($group = NULL, $config = NULL)
 	{
 		if ($group === NULL)
 		{
@@ -27,7 +27,10 @@ abstract class Gearman_Client {
 			return Gearman_Client::$instances[$group];
 		}
 
-		$config = Kohana::$config->load('gearman.client');
+		if (is_null($config))
+		{
+			$config = Kohana::$config->load('gearman.client');
+		}
 
 		if ( ! array_key_exists($group, $config))
 		{
@@ -56,7 +59,7 @@ abstract class Gearman_Client {
 	abstract public function add_job_bg(Gearman_Job $job, $priority = Gearman::PRIORITY_NORMAL);
 
 	abstract public function run_jobs();
-	
+
 	protected function handle_success($job, $result)
 	{
 		$job->handle_success($result);

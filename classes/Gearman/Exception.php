@@ -8,4 +8,4 @@
  * @license    http://kohanaframework.org/license
  */
 
-class Gearman_Exception extends Kohana_Exception {}
+class Gearman_Exception extends Exception {}

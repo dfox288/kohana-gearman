@@ -30,7 +30,7 @@ abstract class Gearman_Job {
 		$class = 'Job_'.$class;
 		return new $class;
 	}
-	
+
 	public function __construct()
 	{
 		$this->log = Kohana_Log::instance();
@@ -41,7 +41,7 @@ abstract class Gearman_Job {
 		if ($workload)
 		{
 			$this->workload = $workload;
-			
+
 			return TRUE;
 		}
 		else
@@ -66,7 +66,7 @@ abstract class Gearman_Job {
 				':function_name' => $this->function_name()
 			));
 
-		$this->on_success($result); 
+		$this->on_success($result);
 	}
 
 	protected function on_success($result)

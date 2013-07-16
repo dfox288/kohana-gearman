@@ -1,5 +1,7 @@
 <?php
-class Job_Test extends Gearman_Job {
+
+class Job_Test extends Gearman_Job
+{
 	// Optional on_success callback
 	protected function on_success($result)
 	{
