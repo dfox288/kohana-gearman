@@ -10,10 +10,10 @@
 
 abstract class Gearman_Job
 {
-	protected $complete = FALSE;
-	protected $success = FALSE;
-	protected $warning = FALSE;
-	protected $failed = FALSE;
+	protected $complete  = FALSE;
+	protected $success   = FALSE;
+	protected $warning   = FALSE;
+	protected $failed    = FALSE;
 	protected $exception = FALSE;
 
 	protected $job;

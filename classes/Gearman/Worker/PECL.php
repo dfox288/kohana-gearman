@@ -29,18 +29,77 @@ class Gearman_Worker_PECL extends Gearman_Worker
 			}
 		}
 
-		foreach ($this->config['functions'] as $function)
+		// Create a list of available task methods
+		$tasks = $this->_list_tasks(Kohana::list_files('classes/Gearman/Task'));
+
+		foreach ($tasks AS $task => $opts)
 		{
-			$instance = Gearman_Task::factory($function['callback'][0]);
+			$instance = new $task;
+			$callback = array($instance, 'work');
 
-			$callback = array($instance, $function['callback'][1]);
-
-			$this->worker->addFunction($instance->function_name(), $callback, NULL, $function['timeout']);
+			$timeout = (isset($opts['timeout']) ? $opts['timeout'] : $this->config['timeout']);
+			$this->worker->addFunction($instance->function_name(), $callback, NULL, $timeout);
 		}
+
 	}
 
 	protected function _work()
 	{
 		while($this->worker->work());
+	}
+
+	/**
+	 * Compiles a list of available Gearman tasks
+	 *
+	 * @param  array Directory structure of tasks
+	 * @return array Array of [$task_classe => $opts]
+	 */
+	protected function _list_tasks(array $files)
+	{
+		$es = array();
+
+		foreach ($files AS $file => $path)
+		{
+			$class = str_replace(
+				array('classes/', '/', '.php'),
+				array('', '_', ''),
+				$file
+			);
+
+			// Invalid file name that doesn't map to class
+			if (!class_exists($class))
+			{
+				continue;
+			}
+
+			$inspector = new ReflectionClass($class);
+			$default_properties = $inspector->getDefaultProperties();
+
+			$opts = array();
+			if (isset($default_properties['options']))
+			{
+				$opts = $default_properties['options'];
+			}
+
+			// TODO: implement ReflectionClass::getMethods()
+			//  Filter out private methods; use public ones as 'class::method'
+			//  and map those to addFunction()'s $function_name
+
+			if (is_array($path) AND count($path))
+			{
+				$task = $this->_list_tasks($path);
+
+				if ($task)
+				{
+					$es = array_merge($es, $task);
+				}
+			}
+			else
+			{
+				$es[$class] = $opts;
+			}
+		}
+
+		return $es;
 	}
 }

@@ -10,7 +10,7 @@
 
 abstract class Gearman_Client {
 
-	public static $default = 'default';
+	public static $default   = 'default';
 	public static $instances = array();
 
 	protected $config;

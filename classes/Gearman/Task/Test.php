@@ -1,6 +1,6 @@
 <?php
 
-class Task_Test extends Gearman_Task
+class Gearman_Task_Test extends Gearman_Task
 {
 	// Used to override the default, generated, function name.
 	public function function_name()
