@@ -3,10 +3,9 @@
 return array(
 	'worker' => array(
 		'default' => array(
-			'driver' => 'pecl',
-			'servers' => array(
-//				'127.0.0.1' => array('127.0.0.1', 4730),
-			),
+			'driver' => 'PECL',
+			// Comma-separated list, format host[:port] (port defaults to 4730)
+			'servers' => '127.0.0.1:4730', // Eg.: '10.0.1.10,10.0.1.11,10.0.1.11:4731'
 			'functions' => array(
 //				'Task_Reverse' => array(
 //					'callback' => array('Task_Reverse', 'work'),
@@ -17,10 +16,9 @@ return array(
 	),
 	'client' => array(
 		'default' => array(
-			'driver' => 'pecl',
-			'servers' => array(
-//				array('127.0.0.1', 4730),
-			),
+			'driver' => 'PECL',
+			// Comma-separated list, format host[:port] (port defaults to 4730)
+			'servers' => '127.0.0.1:4730', // Eg.: '10.0.1.10,10.0.1.11,10.0.1.11:4731'
 		),
 	),
 );

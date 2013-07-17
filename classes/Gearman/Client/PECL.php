@@ -20,9 +20,16 @@ class Gearman_Client_PECL extends Gearman_Client {
 
 		$this->client = new GearmanClient();
 
-		foreach ($this->config['servers'] as $server)
+		if (is_string($this->config['servers']))
 		{
-			$this->client->addServer($server[0], $server[1]);
+			$this->client->addServers($this->config['servers']);
+		}
+		else
+		{
+			foreach ($this->config['servers'] as $server)
+			{
+				$this->client->addServer($server[0], $server[1]);
+			}
 		}
 
 		$this->client->setCompleteCallback(array($this, 'handle_success_callback'));
@@ -143,13 +150,13 @@ class Gearman_Client_PECL extends Gearman_Client {
 		switch ($priority)
 		{
 			case Gearman::PRIORITY_LOW:
-				$this->client->addTaskLowBackground($job->function_name(), $job->workload());
+				return $this->client->addTaskLowBackground($job->function_name(), $job->workload());
 				break;
 			case Gearman::PRIORITY_NORMAL:
-				$this->client->addTaskBackground($job->function_name(), $job->workload());
+				return $this->client->addTaskBackground($job->function_name(), $job->workload());
 				break;
 			case Gearman::PRIORITY_HIGH:
-				$this->client->addTaskHighBackground($job->function_name(), $job->workload());
+				return $this->client->addTaskHighBackground($job->function_name(), $job->workload());
 				break;
 			default:
 				throw new Gearman_Client_Exception('Invalid priority specified');

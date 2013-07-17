@@ -8,7 +8,8 @@
  * @license    http://kohanaframework.org/license
  */
 
-abstract class Gearman_Job {
+abstract class Gearman_Job
+{
 	protected $complete = FALSE;
 	protected $success = FALSE;
 	protected $warning = FALSE;
@@ -27,7 +28,7 @@ abstract class Gearman_Job {
 
 	public static function factory($class)
 	{
-		$class = 'Job_'.$class;
+		$class = 'Gearman_Job_' . $class;
 		return new $class;
 	}
 
