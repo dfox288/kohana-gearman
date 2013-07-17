@@ -35,6 +35,7 @@ Contributors
 * [Kiall Mac Innes](https://github.com/kiall)
 * [Prof Syd Xu](https://github.com/bububa)
 * [Woody Gilk](https://github.com/shadowhand)
+* [XiBao](https://github.com/xibao)
 
 
 Copyright/License
