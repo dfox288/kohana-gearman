@@ -1,0 +1,18 @@
+{
+	"name":        "dfox/kohana-gearman",
+	"type":        "kohana-module",
+	"description": "Implementation of Gearman Client & Worker, uses PECL Gearman",
+	"license":     "Kohana License",
+	"keywords":    ["gearman", "kohana"],
+	"authors": [
+		{
+			"name":     "Kiall Mac Innes",
+			"role":     "developer"
+		}
+	],
+	"require": {
+		"composer/installers": "~1.0",
+		"kohana/core":         ">=3.3",
+		"php":                 ">=5.4"
+	}
+}
